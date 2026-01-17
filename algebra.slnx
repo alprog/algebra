@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="algebra.vcxproj" />
+  <Project Path="algebra.vcxproj" Id="5fd3d7c6-03a3-40fa-956e-6ef824050700" />
 </Solution>
