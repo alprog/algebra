@@ -18,13 +18,22 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CayleyTable.ixx">
+    <ClCompile Include="SquareTable.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TableGenerator.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LatinSquare.ixx">
+    <ClCompile Include="IncompleteLatinSquare.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CayleyTable.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementSet.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementIndex.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

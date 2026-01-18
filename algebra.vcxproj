@@ -138,7 +138,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CayleyTable.ixx" />
-    <ClCompile Include="LatinSquare.ixx" />
+    <ClCompile Include="ElementIndex.ixx" />
+    <ClCompile Include="ElementSet.ixx" />
+    <ClCompile Include="SquareTable.ixx" />
+    <ClCompile Include="IncompleteLatinSquare.ixx" />
     <ClCompile Include="TableGenerator.ixx" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

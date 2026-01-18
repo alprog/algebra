@@ -1,35 +1,14 @@
 export module CayleyTable;
 
 import std;
+export import ElementIndex;
+export import SquareTable;
 
-using ElementIndex = unsigned char;
-
-export template <typename T>
-void print(const T& value, const std::string& alphabet);
-
-export template <ElementIndex>
-void print(const ElementIndex& element_index, const std::string& alphabet)
+export struct CayleyTable : public SquareTable<ElementIndex>
 {
-	std::cout << alphabet[element_index];
-}
-
-export template <typename CellT>
-struct CayleyTable
-{
-	int order;
-	std::vector<CellT> cells;
-
-	CayleyTable(int order)
-		: order{ order }
-		, cells{ order * order }
-	{
-	}
-
-	CayleyTable(int order, std::vector<CellT> cells)
-		: order{ order }
-		, cells{ cells }
-	{
-	}
+	using Base = SquareTable<ElementIndex>;
+	
+	using Base::SquareTable;
 
 	void print(const std::string& alphabet)
 	{
@@ -47,9 +26,7 @@ struct CayleyTable
 			std::cout << alphabet[r] << " |";
 			for (int c = 0; c < order; ++c)
 			{
-				std::cout << ' ';
-				::print(*pCell, alphabet);
-				pCell++;
+				std::cout << ' ' << alphabet[*pCell++];
 			}
 			std::cout << std::endl;
 		}
