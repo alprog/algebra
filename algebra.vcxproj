@@ -140,10 +140,13 @@
     <ClCompile Include="CayleyTable.ixx" />
     <ClCompile Include="ElementIndex.ixx" />
     <ClCompile Include="ElementSet.ixx" />
+    <ClCompile Include="Permutation.ixx" />
+    <ClCompile Include="PermutationGenerator.ixx" />
     <ClCompile Include="SquareTable.ixx" />
     <ClCompile Include="IncompleteLatinSquare.ixx" />
     <ClCompile Include="TableGenerator.ixx" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utils.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

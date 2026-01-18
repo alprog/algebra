@@ -6,8 +6,6 @@ export import ElementSet;
 export import SquareTable;
 export import CayleyTable;
 
-// for intellisense
-
 export struct IncompleteLatinSquare : public SquareTable<ElementSet>
 {
 	using Base = SquareTable<ElementSet>;
@@ -17,7 +15,7 @@ export struct IncompleteLatinSquare : public SquareTable<ElementSet>
 		: Base{ order }
 	{
 		ElementSet::mask_t init_mask = ~(~0 << order);
-		cells.resize(order * order, init_mask);
+		std::fill(cells.begin(), cells.end(), init_mask);
 	}
 
 	IncompleteLatinSquare(const IncompleteLatinSquare& table)

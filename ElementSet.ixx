@@ -10,6 +10,8 @@ export struct ElementSet
 
 	mask_t mask = 0xFF;
 
+	ElementSet() = default;
+
 	ElementSet(mask_t mask)
 		: mask{ mask }
 	{

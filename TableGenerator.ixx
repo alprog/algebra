@@ -5,6 +5,8 @@ import std;
 import CayleyTable;
 import IncompleteLatinSquare;
 
+using IsomorphicCollection = std::vector<CayleyTable>;
+
 export class TableGenerator
 {
 public:
@@ -18,6 +20,33 @@ public:
 		std::vector<CayleyTable> solutions;
 		find_solutions_recursive(square, solutions);
 		return solutions;
+	}
+
+	std::vector<IsomorphicCollection> combine_isomorphic(const std::vector<CayleyTable>& tables)
+	{
+		std::vector<IsomorphicCollection> collections;
+
+		std::set<std::vector<ElementIndex>> unique_set;
+		for (const CayleyTable& table : tables)
+		{
+			if (!unique_set.contains(table.cells))
+			{
+				collections.push_back(create_isomorphic_collection(table));
+				for (const auto& table : collections.back())
+				{
+					unique_set.insert(table.cells);
+				}
+			}
+		}
+
+		return collections;
+	}
+
+	IsomorphicCollection create_isomorphic_collection(const CayleyTable& table)
+	{
+		IsomorphicCollection collection = { table };
+
+		return collection;
 	}
 
 private:

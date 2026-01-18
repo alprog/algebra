@@ -16,7 +16,7 @@ struct SquareTable
 
 	SquareTable(int order)
 		: order{ order }
-		, cells{ order * order }
+		, cells( order * order )
 	{
 	}
 
