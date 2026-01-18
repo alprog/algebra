@@ -141,6 +141,7 @@
     <ClCompile Include="ElementIndex.ixx" />
     <ClCompile Include="ElementSet.ixx" />
     <ClCompile Include="Permutation.ixx" />
+    <ClCompile Include="PermutationCache.ixx" />
     <ClCompile Include="PermutationGenerator.ixx" />
     <ClCompile Include="SquareTable.ixx" />
     <ClCompile Include="IncompleteLatinSquare.ixx" />

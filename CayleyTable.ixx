@@ -4,18 +4,31 @@ import std;
 export import ElementIndex;
 export import SquareTable;
 export import Permutation;
+export import PermutationGenerator;
 
 export struct CayleyTable : public SquareTable<ElementIndex>
 {
 	using Base = SquareTable<ElementIndex>;
-	
+
 	using Base::SquareTable;
 
-	bool is_first_element_identity()
+	ElementIndex find_identity_element() const
 	{
 		for (int i = 0; i < order; ++i)
 		{
-			if (get_cell({ 0, i }) != i || get_cell({ i, 0 }) != i)
+			if (is_identity_element(i))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	bool is_identity_element(ElementIndex index) const
+	{
+		for (int i = 0; i < order; ++i)
+		{
+			if (get_cell({ index, i }) != i || get_cell({ i, index }) != i)
 			{
 				return false;
 			}
@@ -23,7 +36,7 @@ export struct CayleyTable : public SquareTable<ElementIndex>
 		return true;
 	}
 
-	void print(const std::string& alphabet)
+	void print(const std::string& alphabet) const
 	{
 		std::cout << ". |";
 		for (int i = 0; i < order; ++i)
@@ -45,7 +58,7 @@ export struct CayleyTable : public SquareTable<ElementIndex>
 		}
 	}
 
-	CayleyTable get_isomorphic_table(const Permutation& element_order_permutation)
+	CayleyTable get_isomorphic_table(const Permutation& element_order_permutation) const
 	{
 		CayleyTable result(order);
 		for (int r = 0; r < order; ++r)
@@ -60,5 +73,22 @@ export struct CayleyTable : public SquareTable<ElementIndex>
 			}
 		}
 		return result;
+	}
+
+	CayleyTable get_normalized_table() const
+	{
+		ElementIndex identity_index = find_identity_element();
+		if (identity_index == 0 || identity_index == 255)
+		{
+			return *this; // already normalized or can't be normalized
+		}
+
+		auto& transposition = PermutationGenerator::get_identity_transposition(order, identity_index);
+		return get_isomorphic_table(transposition);
+	}
+
+	std::partial_ordering operator<=>(const CayleyTable& rhs) const
+	{
+		return cells <=> rhs.cells;
 	}
 };

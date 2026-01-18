@@ -76,7 +76,7 @@ export struct IncompleteLatinSquare : public SquareTable<ElementSet>
 
 	int get_index(CellT* pCell)
 	{
-		return pCell - &cells[0];
+		return static_cast<int>(pCell - &cells[0]);
 	}
 
 	int index(int r, int c)

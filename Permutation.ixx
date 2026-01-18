@@ -1,7 +1,7 @@
 export module Permutation;
 
 import std;
-import ElementIndex;
+export import ElementIndex;
 
 export struct Permutation
 {

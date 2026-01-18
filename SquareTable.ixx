@@ -35,4 +35,9 @@ struct SquareTable
 	{
 		return cells[multiindex.row * order + multiindex.col];
 	}
+
+	const CellT& get_cell(RowCol multiindex) const
+	{
+		return cells[multiindex.row * order + multiindex.col];
+	}
 };

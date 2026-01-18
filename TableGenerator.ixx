@@ -4,8 +4,9 @@ import std;
 
 import CayleyTable;
 import IncompleteLatinSquare;
+import PermutationGenerator;
 
-using IsomorphicCollection = std::vector<CayleyTable>;
+export using IsomorphicCollection = std::set<CayleyTable>;
 
 export class TableGenerator
 {
@@ -22,31 +23,31 @@ public:
 		return solutions;
 	}
 
-	std::vector<IsomorphicCollection> combine_isomorphic(const std::vector<CayleyTable>& tables)
+	std::vector<IsomorphicCollection> make_isomorphic_collections(const std::vector<CayleyTable>& tables)
 	{
 		std::vector<IsomorphicCollection> collections;
 
-		std::set<std::vector<ElementIndex>> unique_set;
+		std::set<CayleyTable> unique_set;
 		for (const CayleyTable& table : tables)
 		{
-			if (!unique_set.contains(table.cells))
+			if (unique_set.contains(table))
 			{
-				collections.push_back(create_isomorphic_collection(table));
-				for (const auto& table : collections.back())
-				{
-					unique_set.insert(table.cells);
-				}
+				continue;
 			}
+
+			auto norm_table = table.get_normalized_table();
+			if (unique_set.contains(norm_table))
+			{
+				continue;
+			}
+
+			auto collection = create_isomorphic_collection(norm_table);
+			collections.push_back(collection);
+			collections.back();
+			unique_set.insert(collection.begin(), collection.end());
 		}
 
 		return collections;
-	}
-
-	IsomorphicCollection create_isomorphic_collection(const CayleyTable& table)
-	{
-		IsomorphicCollection collection = { table };
-
-		return collection;
 	}
 
 private:
@@ -74,4 +75,19 @@ private:
 		}
 	}
 
+	IsomorphicCollection create_isomorphic_collection(const CayleyTable& table)
+	{
+		IsomorphicCollection collection = { table };
+
+		const bool fixed_identity = table.is_identity_element(0);
+		const auto& permutations = PermutationGenerator::get_permutation_list(table.order, fixed_identity);
+
+		for (int i = 1; i < permutations.size(); i++) // skip identity permutation at index 0
+		{
+			const Permutation& permutation = permutations[i];
+			collection.insert(table.get_isomorphic_table(permutation));
+		}
+
+		return collection;
+	}
 };
